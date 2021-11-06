@@ -4,22 +4,22 @@ namespace FiguresLib
 {
     public class Circle: TFigure
     {
-        private int         r;
-        private Point       coords;
-        private const int   width = 740;
-        private const int   heigth = 572;
+        protected int         r;
+        protected Point       coords;
         public Circle()
         {
             Random rnd = new Random();
             this.r = rnd.Next(2, width / 2);
             coords = new Point(rnd.Next(Math.Abs(width - 2 * r)),
                                     rnd.Next(Math.Abs(heigth - 2 * r)));
+            initXY(coords);
             //generate randomly
         }
         public Circle(Point coords, int r)
         {
             this.coords = coords;
             this.r = r;
+            initXY(coords);
         }
         public override void Show(Graphics gc)
         {

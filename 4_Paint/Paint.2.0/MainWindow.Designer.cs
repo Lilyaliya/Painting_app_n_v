@@ -32,23 +32,26 @@ namespace Paint._2._0
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindow));
             this.panel1 = new System.Windows.Forms.Panel();
-            this.houseControl = new System.Windows.Forms.Button();
-            this.ringControl = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            this.rectanControl = new System.Windows.Forms.Button();
-            this.squareControl = new System.Windows.Forms.Button();
-            this.circleControl = new System.Windows.Forms.Button();
             this.message = new System.Windows.Forms.Label();
             this.timerMessage = new System.Windows.Forms.Timer(this.components);
             this.itemList = new System.Windows.Forms.CheckedListBox();
             this.additional = new System.Windows.Forms.Button();
             this.boxWidth = new System.Windows.Forms.TextBox();
             this.boxHeigth = new System.Windows.Forms.TextBox();
-            this.trashBtn = new System.Windows.Forms.Button();
-            this.canva = new System.Windows.Forms.PictureBox();
             this.moveBtn = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
+            this.rotateBtn = new System.Windows.Forms.Button();
+            this.trashBtn = new System.Windows.Forms.Button();
+            this.ellipseControl = new System.Windows.Forms.Button();
+            this.houseControl = new System.Windows.Forms.Button();
             this.rombControl = new System.Windows.Forms.Button();
+            this.ringControl = new System.Windows.Forms.Button();
+            this.rectanControl = new System.Windows.Forms.Button();
+            this.squareControl = new System.Windows.Forms.Button();
+            this.circleControl = new System.Windows.Forms.Button();
+            this.canva = new System.Windows.Forms.PictureBox();
+            this.trapControl = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.canva)).BeginInit();
             this.SuspendLayout();
@@ -56,7 +59,10 @@ namespace Paint._2._0
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.trapControl);
+            this.panel1.Controls.Add(this.ellipseControl);
             this.panel1.Controls.Add(this.houseControl);
+            this.panel1.Controls.Add(this.rombControl);
             this.panel1.Controls.Add(this.ringControl);
             this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.rectanControl);
@@ -68,44 +74,6 @@ namespace Paint._2._0
             this.panel1.Size = new System.Drawing.Size(244, 290);
             this.panel1.TabIndex = 1;
             // 
-            // houseControl
-            // 
-            this.houseControl.BackColor = System.Drawing.Color.Transparent;
-            this.houseControl.BackgroundImage = global::Paint._2._0.Properties.Resources.rectangle_icon_172928;
-            this.houseControl.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.houseControl.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.houseControl.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            this.houseControl.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            this.houseControl.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            this.houseControl.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.houseControl.Location = new System.Drawing.Point(122, 111);
-            this.houseControl.Name = "houseControl";
-            this.houseControl.Size = new System.Drawing.Size(88, 58);
-            this.houseControl.TabIndex = 7;
-            this.houseControl.Tag = "button";
-            this.houseControl.Text = "ДОМ";
-            this.houseControl.UseVisualStyleBackColor = false;
-            this.houseControl.MouseClick += new System.Windows.Forms.MouseEventHandler(this.mouseClick);
-            // 
-            // ringControl
-            // 
-            this.ringControl.BackColor = System.Drawing.Color.Transparent;
-            this.ringControl.BackgroundImage = global::Paint._2._0.Properties.Resources.rectangle_icon_172928;
-            this.ringControl.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ringControl.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ringControl.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            this.ringControl.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            this.ringControl.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            this.ringControl.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ringControl.Location = new System.Drawing.Point(28, 111);
-            this.ringControl.Name = "ringControl";
-            this.ringControl.Size = new System.Drawing.Size(88, 58);
-            this.ringControl.TabIndex = 6;
-            this.ringControl.Tag = "button";
-            this.ringControl.Text = "КОЛЬЦО";
-            this.ringControl.UseVisualStyleBackColor = false;
-            this.ringControl.MouseClick += new System.Windows.Forms.MouseEventHandler(this.mouseClick);
-            // 
             // button1
             // 
             this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
@@ -115,71 +83,14 @@ namespace Paint._2._0
             this.button1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
             this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Location = new System.Drawing.Point(26, 248);
+            this.button1.Location = new System.Drawing.Point(6, 249);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(186, 36);
+            this.button1.Size = new System.Drawing.Size(226, 36);
             this.button1.TabIndex = 5;
             this.button1.Tag = "random";
             this.button1.Text = "СЛУЧАЙНО";
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // rectanControl
-            // 
-            this.rectanControl.BackColor = System.Drawing.Color.Transparent;
-            this.rectanControl.BackgroundImage = global::Paint._2._0.Properties.Resources.rectangle_icon_172928;
-            this.rectanControl.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.rectanControl.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.rectanControl.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            this.rectanControl.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            this.rectanControl.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            this.rectanControl.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rectanControl.Location = new System.Drawing.Point(26, 175);
-            this.rectanControl.Name = "rectanControl";
-            this.rectanControl.Size = new System.Drawing.Size(186, 67);
-            this.rectanControl.TabIndex = 4;
-            this.rectanControl.Tag = "button";
-            this.rectanControl.Text = "ПРЯМОУГОЛЬНИК";
-            this.rectanControl.UseVisualStyleBackColor = false;
-            this.rectanControl.MouseClick += new System.Windows.Forms.MouseEventHandler(this.mouseClick);
-            // 
-            // squareControl
-            // 
-            this.squareControl.BackColor = System.Drawing.Color.Transparent;
-            this.squareControl.BackgroundImage = global::Paint._2._0.Properties.Resources.square_icon_184667;
-            this.squareControl.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.squareControl.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.squareControl.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            this.squareControl.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            this.squareControl.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            this.squareControl.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.squareControl.Location = new System.Drawing.Point(26, 11);
-            this.squareControl.Name = "squareControl";
-            this.squareControl.Size = new System.Drawing.Size(90, 90);
-            this.squareControl.TabIndex = 3;
-            this.squareControl.Tag = "button";
-            this.squareControl.Text = "КВАДРАТ";
-            this.squareControl.UseVisualStyleBackColor = false;
-            this.squareControl.MouseClick += new System.Windows.Forms.MouseEventHandler(this.mouseClick);
-            // 
-            // circleControl
-            // 
-            this.circleControl.BackColor = System.Drawing.Color.Transparent;
-            this.circleControl.BackgroundImage = global::Paint._2._0.Properties.Resources.circle_icon_144418;
-            this.circleControl.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.circleControl.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.circleControl.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            this.circleControl.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            this.circleControl.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            this.circleControl.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.circleControl.Location = new System.Drawing.Point(122, 11);
-            this.circleControl.Name = "circleControl";
-            this.circleControl.Size = new System.Drawing.Size(90, 90);
-            this.circleControl.TabIndex = 2;
-            this.circleControl.Tag = "button";
-            this.circleControl.Text = "КРУГ";
-            this.circleControl.UseVisualStyleBackColor = false;
-            this.circleControl.MouseClick += new System.Windows.Forms.MouseEventHandler(this.mouseClick);
             // 
             // message
             // 
@@ -255,42 +166,6 @@ namespace Paint._2._0
             this.boxHeigth.Visible = false;
             this.boxHeigth.TextChanged += new System.EventHandler(this.boxHeigth_TextChanged);
             // 
-            // trashBtn
-            // 
-            this.trashBtn.BackColor = System.Drawing.Color.Transparent;
-            this.trashBtn.BackgroundImage = global::Paint._2._0.Properties.Resources.seo_social_web_network_internet_262_icon_icons_com_61518;
-            this.trashBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.trashBtn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.trashBtn.Enabled = false;
-            this.trashBtn.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            this.trashBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            this.trashBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            this.trashBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.trashBtn.Location = new System.Drawing.Point(747, 394);
-            this.trashBtn.Name = "trashBtn";
-            this.trashBtn.Size = new System.Drawing.Size(55, 51);
-            this.trashBtn.TabIndex = 8;
-            this.trashBtn.Tag = "button";
-            this.trashBtn.UseVisualStyleBackColor = false;
-            this.trashBtn.Visible = false;
-            this.trashBtn.Click += new System.EventHandler(this.trashBtn_Click);
-            // 
-            // canva
-            // 
-            this.canva.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.canva.Dock = System.Windows.Forms.DockStyle.Left;
-            this.canva.Location = new System.Drawing.Point(0, 0);
-            this.canva.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.canva.Name = "canva";
-            this.canva.Size = new System.Drawing.Size(740, 572);
-            this.canva.TabIndex = 0;
-            this.canva.TabStop = false;
-            this.canva.Paint += new System.Windows.Forms.PaintEventHandler(this.canva_Paint);
-            this.canva.MouseClick += new System.Windows.Forms.MouseEventHandler(this.canva_MouseClick);
-            this.canva.MouseDown += new System.Windows.Forms.MouseEventHandler(this.canva_MouseDown);
-            this.canva.MouseMove += new System.Windows.Forms.MouseEventHandler(this.canva_MouseMove);
-            this.canva.MouseUp += new System.Windows.Forms.MouseEventHandler(this.canva_MouseUp);
-            // 
             // moveBtn
             // 
             this.moveBtn.BackColor = System.Drawing.Color.Transparent;
@@ -325,6 +200,84 @@ namespace Paint._2._0
             this.textBox1.Visible = false;
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
+            // rotateBtn
+            // 
+            this.rotateBtn.BackColor = System.Drawing.Color.Transparent;
+            this.rotateBtn.BackgroundImage = global::Paint._2._0.Properties.Resources.rotate_refresh_update_icon_178283;
+            this.rotateBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.rotateBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.rotateBtn.Enabled = false;
+            this.rotateBtn.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.rotateBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.rotateBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.rotateBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rotateBtn.Location = new System.Drawing.Point(747, 452);
+            this.rotateBtn.Name = "rotateBtn";
+            this.rotateBtn.Size = new System.Drawing.Size(55, 51);
+            this.rotateBtn.TabIndex = 11;
+            this.rotateBtn.Tag = "button";
+            this.rotateBtn.UseVisualStyleBackColor = false;
+            this.rotateBtn.Visible = false;
+            this.rotateBtn.Click += new System.EventHandler(this.rotateBtn_Click);
+            // 
+            // trashBtn
+            // 
+            this.trashBtn.BackColor = System.Drawing.Color.Transparent;
+            this.trashBtn.BackgroundImage = global::Paint._2._0.Properties.Resources.seo_social_web_network_internet_262_icon_icons_com_61518;
+            this.trashBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.trashBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.trashBtn.Enabled = false;
+            this.trashBtn.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.trashBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.trashBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.trashBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.trashBtn.Location = new System.Drawing.Point(747, 394);
+            this.trashBtn.Name = "trashBtn";
+            this.trashBtn.Size = new System.Drawing.Size(55, 51);
+            this.trashBtn.TabIndex = 8;
+            this.trashBtn.Tag = "button";
+            this.trashBtn.UseVisualStyleBackColor = false;
+            this.trashBtn.Visible = false;
+            this.trashBtn.Click += new System.EventHandler(this.trashBtn_Click);
+            // 
+            // ellipseControl
+            // 
+            this.ellipseControl.BackColor = System.Drawing.Color.Transparent;
+            this.ellipseControl.BackgroundImage = global::Paint._2._0.Properties.Resources.rectangle_icon_172928;
+            this.ellipseControl.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.ellipseControl.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ellipseControl.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.ellipseControl.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.ellipseControl.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.ellipseControl.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ellipseControl.Location = new System.Drawing.Point(111, 3);
+            this.ellipseControl.Name = "ellipseControl";
+            this.ellipseControl.Size = new System.Drawing.Size(121, 47);
+            this.ellipseControl.TabIndex = 11;
+            this.ellipseControl.Tag = "button";
+            this.ellipseControl.Text = "ЭЛЛИПС";
+            this.ellipseControl.UseVisualStyleBackColor = false;
+            this.ellipseControl.MouseClick += new System.Windows.Forms.MouseEventHandler(this.mouseClick);
+            // 
+            // houseControl
+            // 
+            this.houseControl.BackColor = System.Drawing.Color.Transparent;
+            this.houseControl.BackgroundImage = global::Paint._2._0.Properties.Resources.rectangle_icon_172928;
+            this.houseControl.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.houseControl.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.houseControl.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.houseControl.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.houseControl.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.houseControl.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.houseControl.Location = new System.Drawing.Point(111, 56);
+            this.houseControl.Name = "houseControl";
+            this.houseControl.Size = new System.Drawing.Size(121, 41);
+            this.houseControl.TabIndex = 7;
+            this.houseControl.Tag = "button";
+            this.houseControl.Text = "ДОМ";
+            this.houseControl.UseVisualStyleBackColor = false;
+            this.houseControl.MouseClick += new System.Windows.Forms.MouseEventHandler(this.mouseClick);
+            // 
             // rombControl
             // 
             this.rombControl.BackColor = System.Drawing.Color.Transparent;
@@ -335,14 +288,124 @@ namespace Paint._2._0
             this.rombControl.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
             this.rombControl.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
             this.rombControl.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rombControl.Location = new System.Drawing.Point(747, 458);
+            this.rombControl.Location = new System.Drawing.Point(6, 204);
             this.rombControl.Name = "rombControl";
-            this.rombControl.Size = new System.Drawing.Size(67, 45);
+            this.rombControl.Size = new System.Drawing.Size(69, 39);
             this.rombControl.TabIndex = 8;
             this.rombControl.Tag = "button";
             this.rombControl.Text = "РОМБ";
             this.rombControl.UseVisualStyleBackColor = false;
             this.rombControl.MouseClick += new System.Windows.Forms.MouseEventHandler(this.mouseClick);
+            // 
+            // ringControl
+            // 
+            this.ringControl.BackColor = System.Drawing.Color.Transparent;
+            this.ringControl.BackgroundImage = global::Paint._2._0.Properties.Resources.rectangle_icon_172928;
+            this.ringControl.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.ringControl.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ringControl.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.ringControl.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.ringControl.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.ringControl.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ringControl.Location = new System.Drawing.Point(111, 162);
+            this.ringControl.Name = "ringControl";
+            this.ringControl.Size = new System.Drawing.Size(121, 36);
+            this.ringControl.TabIndex = 6;
+            this.ringControl.Tag = "button";
+            this.ringControl.Text = "КОЛЬЦО";
+            this.ringControl.UseVisualStyleBackColor = false;
+            this.ringControl.MouseClick += new System.Windows.Forms.MouseEventHandler(this.mouseClick);
+            // 
+            // rectanControl
+            // 
+            this.rectanControl.BackColor = System.Drawing.Color.Transparent;
+            this.rectanControl.BackgroundImage = global::Paint._2._0.Properties.Resources.square_icon_184667;
+            this.rectanControl.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.rectanControl.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.rectanControl.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.rectanControl.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.rectanControl.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.rectanControl.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rectanControl.Location = new System.Drawing.Point(81, 204);
+            this.rectanControl.Name = "rectanControl";
+            this.rectanControl.Size = new System.Drawing.Size(151, 38);
+            this.rectanControl.TabIndex = 4;
+            this.rectanControl.Tag = "button";
+            this.rectanControl.Text = "ПРЯМОУГОЛЬНИК";
+            this.rectanControl.UseVisualStyleBackColor = false;
+            this.rectanControl.MouseClick += new System.Windows.Forms.MouseEventHandler(this.mouseClick);
+            // 
+            // squareControl
+            // 
+            this.squareControl.BackColor = System.Drawing.Color.Transparent;
+            this.squareControl.BackgroundImage = global::Paint._2._0.Properties.Resources.square_icon_184667;
+            this.squareControl.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.squareControl.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.squareControl.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.squareControl.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.squareControl.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.squareControl.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.squareControl.Location = new System.Drawing.Point(6, 3);
+            this.squareControl.Name = "squareControl";
+            this.squareControl.Size = new System.Drawing.Size(99, 95);
+            this.squareControl.TabIndex = 3;
+            this.squareControl.Tag = "button";
+            this.squareControl.Text = "КВАДРАТ";
+            this.squareControl.UseVisualStyleBackColor = false;
+            this.squareControl.MouseClick += new System.Windows.Forms.MouseEventHandler(this.mouseClick);
+            // 
+            // circleControl
+            // 
+            this.circleControl.BackColor = System.Drawing.Color.Transparent;
+            this.circleControl.BackgroundImage = global::Paint._2._0.Properties.Resources.circle_icon_144418;
+            this.circleControl.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.circleControl.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.circleControl.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.circleControl.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.circleControl.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.circleControl.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.circleControl.Location = new System.Drawing.Point(6, 104);
+            this.circleControl.Name = "circleControl";
+            this.circleControl.Size = new System.Drawing.Size(99, 94);
+            this.circleControl.TabIndex = 2;
+            this.circleControl.Tag = "button";
+            this.circleControl.Text = "КРУГ";
+            this.circleControl.UseVisualStyleBackColor = false;
+            this.circleControl.MouseClick += new System.Windows.Forms.MouseEventHandler(this.mouseClick);
+            // 
+            // canva
+            // 
+            this.canva.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.canva.Dock = System.Windows.Forms.DockStyle.Left;
+            this.canva.Location = new System.Drawing.Point(0, 0);
+            this.canva.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.canva.Name = "canva";
+            this.canva.Size = new System.Drawing.Size(740, 572);
+            this.canva.TabIndex = 0;
+            this.canva.TabStop = false;
+            this.canva.Paint += new System.Windows.Forms.PaintEventHandler(this.canva_Paint);
+            this.canva.MouseClick += new System.Windows.Forms.MouseEventHandler(this.canva_MouseClick);
+            this.canva.MouseDown += new System.Windows.Forms.MouseEventHandler(this.canva_MouseDown);
+            this.canva.MouseMove += new System.Windows.Forms.MouseEventHandler(this.canva_MouseMove);
+            this.canva.MouseUp += new System.Windows.Forms.MouseEventHandler(this.canva_MouseUp);
+            // 
+            // trapControl
+            // 
+            this.trapControl.BackColor = System.Drawing.Color.Transparent;
+            this.trapControl.BackgroundImage = global::Paint._2._0.Properties.Resources.rectangle_icon_172928;
+            this.trapControl.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.trapControl.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.trapControl.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.trapControl.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.trapControl.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.trapControl.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.trapControl.Location = new System.Drawing.Point(111, 104);
+            this.trapControl.Name = "trapControl";
+            this.trapControl.Size = new System.Drawing.Size(121, 52);
+            this.trapControl.TabIndex = 12;
+            this.trapControl.Tag = "button";
+            this.trapControl.Text = "ТРАПЕЦИЯ";
+            this.trapControl.UseVisualStyleBackColor = false;
             // 
             // MainWindow
             // 
@@ -350,7 +413,7 @@ namespace Paint._2._0
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(985, 572);
-            this.Controls.Add(this.rombControl);
+            this.Controls.Add(this.rotateBtn);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.moveBtn);
             this.Controls.Add(this.trashBtn);
@@ -395,6 +458,9 @@ namespace Paint._2._0
         private System.Windows.Forms.Button houseControl;
         private System.Windows.Forms.Button ringControl;
         private System.Windows.Forms.Button rombControl;
+        private System.Windows.Forms.Button ellipseControl;
+        private System.Windows.Forms.Button rotateBtn;
+        private System.Windows.Forms.Button trapControl;
     }
 }
 

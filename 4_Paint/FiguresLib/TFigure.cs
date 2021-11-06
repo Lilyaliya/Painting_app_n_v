@@ -9,11 +9,16 @@ namespace FiguresLib
 {
     public abstract class TFigure
     {
+        protected const int width = 740;
+        protected const int heigth = 572;
         public int X { get; set; }
         public int Y { get; set; }
-        public TFigure(Point p, int x) { }
+        public void initXY(Point p) 
+        {
+            X = p.getX();
+            Y = p.getY();
+        }
         public TFigure() { }
-        public TFigure(int x) { }
         public abstract void Show(Graphics gc);
 
         public abstract void Show(Graphics gc, Color cl);

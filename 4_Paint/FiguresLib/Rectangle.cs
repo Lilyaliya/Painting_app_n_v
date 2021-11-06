@@ -11,8 +11,6 @@ namespace FiguresLib
     {
         private int         x, y; // ширина и высота прямоугольника
         private Point       coords;
-        private const int   width = 740;
-        private const int   heigth = 572;
         public Rectangle()
         {
             Random rnd = new Random();
@@ -20,6 +18,7 @@ namespace FiguresLib
             this.y = rnd.Next(3, heigth / 2);
             coords = new Point(rnd.Next(Math.Abs(width - x)),
                             rnd.Next(Math.Abs(heigth - y)));
+            initXY(coords);
             //generate randomly
         }
 
@@ -34,6 +33,7 @@ namespace FiguresLib
             this.coords = coords;
             this.x = x;
             this.y = y;
+            initXY(this.coords);
         }
         public void Show(Graphics gc, Color color, Point point)
         {

@@ -10,14 +10,13 @@ namespace FiguresLib {
     {
         private int         x; // длина стороны квадрата
         private Point       coords;
-        private const int   width = 740;
-        private const int   heigth = 572;
         public Square()
         {
             Random rnd = new Random();
             this.x = rnd.Next(2, width / 2);
             coords = new Point(rnd.Next(Math.Abs(width - x)),
                                     rnd.Next(Math.Abs(heigth - x)));
+            initXY(coords);
         }
 
         public Square(int x)
@@ -29,6 +28,7 @@ namespace FiguresLib {
         {
             this.coords = coords;
             this.x = x;
+            initXY(this.coords);
         }
 
         public void Show(Graphics gc, Color color, Point point)
