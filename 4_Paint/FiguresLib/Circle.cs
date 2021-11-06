@@ -2,7 +2,7 @@
 using System.Drawing;
 namespace FiguresLib
 {
-    public class Circle
+    public class Circle: TFigure
     {
         private int         r;
         private Point       coords;
@@ -21,21 +21,21 @@ namespace FiguresLib
             this.coords = coords;
             this.r = r;
         }
-        public void Show(Graphics gc)
+        public override void Show(Graphics gc)
         {
             Pen pen = new Pen(Color.Green, 3);
             if (coords != null)
                 gc.DrawEllipse(pen, coords.getX(), coords.getY(), r, r);
         }
 
-        public void Show(Graphics gc, Color color)
+        public override void Show(Graphics gc, Color color)
         {
             Pen pen1 = new Pen(color, 3);
             if (coords != null)
                 gc.DrawEllipse(pen1, coords.getX(), coords.getY(), r, r);
         }
 
-        public void MoveTo(Point point)
+        public override void MoveTo(Point point)
         {
             int x = coords.getX() + point.getX();
             int y = coords.getY() + point.getY();

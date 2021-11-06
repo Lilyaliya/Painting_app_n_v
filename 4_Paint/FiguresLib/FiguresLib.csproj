@@ -50,6 +50,7 @@
     <Compile Include="Ring.cs" />
     <Compile Include="Romb.cs" />
     <Compile Include="Square.cs" />
+    <Compile Include="TFigure.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

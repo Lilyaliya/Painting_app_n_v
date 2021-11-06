@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Drawing;
 
 namespace FiguresLib { 
-    public class Square
+    public class Square: TFigure
     {
         private int         x; // длина стороны квадрата
         private Point       coords;
@@ -38,21 +38,21 @@ namespace FiguresLib {
             gc.DrawRectangle(pen, coords.getX(), coords.getY(), x, x);
         }
 
-        public void Show(Graphics gc)
+        public override void Show(Graphics gc)
         {
             Pen pen = new Pen(Color.Green, 3);
             if (coords != null)
                 gc.DrawRectangle(pen, coords.getX(), coords.getY(), x, x);
         }
 
-        public void Show(Graphics gc, Color color)
+        public override void Show(Graphics gc, Color color)
         {
             Pen pen1 = new Pen(color, 3);
             if (coords != null)
                 gc.DrawRectangle(pen1, coords.getX(), coords.getY(), x, x);
         }
 
-        public void MoveTo(Point point)
+        public override void MoveTo(Point point)
         {
             int x = coords.getX() + point.getX();
             int y = coords.getY() + point.getY();

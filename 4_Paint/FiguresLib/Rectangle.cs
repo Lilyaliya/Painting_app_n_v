@@ -7,7 +7,7 @@ using System.Drawing;
 
 namespace FiguresLib
 {
-    public class Rectangle
+    public class Rectangle: TFigure
     {
         private int         x, y; // ширина и высота прямоугольника
         private Point       coords;
@@ -42,20 +42,20 @@ namespace FiguresLib
             gc.DrawRectangle(pen, coords.getX(), coords.getY(), x, y);
         }
 
-        public void Show(Graphics gc)
+        public override void Show(Graphics gc)
         {
             Pen pen = new Pen(Color.Green, 3);
             if (coords != null)
                 gc.DrawRectangle(pen, coords.getX(), coords.getY(), x, y);
         }
 
-        public void Show(Graphics gc, Color color)
+        public override void Show(Graphics gc, Color color)
         {
             Pen pen1 = new Pen(color, 3);
             if (coords != null)
                 gc.DrawRectangle(pen1, coords.getX(), coords.getY(), x, y);
         }
-        public void MoveTo(Point point)
+        public override void MoveTo(Point point)
         {
             int x = coords.getX() + point.getX();
             int y = coords.getY() + point.getY();
