@@ -32,6 +32,8 @@ namespace Paint._2._0
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindow));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.houseControl = new System.Windows.Forms.Button();
+            this.ringControl = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.rectanControl = new System.Windows.Forms.Button();
             this.squareControl = new System.Windows.Forms.Button();
@@ -46,8 +48,7 @@ namespace Paint._2._0
             this.canva = new System.Windows.Forms.PictureBox();
             this.moveBtn = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.ringControl = new System.Windows.Forms.Button();
-            this.houseControl = new System.Windows.Forms.Button();
+            this.rombControl = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.canva)).BeginInit();
             this.SuspendLayout();
@@ -66,6 +67,44 @@ namespace Paint._2._0
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(244, 290);
             this.panel1.TabIndex = 1;
+            // 
+            // houseControl
+            // 
+            this.houseControl.BackColor = System.Drawing.Color.Transparent;
+            this.houseControl.BackgroundImage = global::Paint._2._0.Properties.Resources.rectangle_icon_172928;
+            this.houseControl.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.houseControl.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.houseControl.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.houseControl.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.houseControl.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.houseControl.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.houseControl.Location = new System.Drawing.Point(122, 111);
+            this.houseControl.Name = "houseControl";
+            this.houseControl.Size = new System.Drawing.Size(88, 58);
+            this.houseControl.TabIndex = 7;
+            this.houseControl.Tag = "button";
+            this.houseControl.Text = "ДОМ";
+            this.houseControl.UseVisualStyleBackColor = false;
+            this.houseControl.MouseClick += new System.Windows.Forms.MouseEventHandler(this.mouseClick);
+            // 
+            // ringControl
+            // 
+            this.ringControl.BackColor = System.Drawing.Color.Transparent;
+            this.ringControl.BackgroundImage = global::Paint._2._0.Properties.Resources.rectangle_icon_172928;
+            this.ringControl.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.ringControl.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ringControl.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.ringControl.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.ringControl.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.ringControl.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ringControl.Location = new System.Drawing.Point(28, 111);
+            this.ringControl.Name = "ringControl";
+            this.ringControl.Size = new System.Drawing.Size(88, 58);
+            this.ringControl.TabIndex = 6;
+            this.ringControl.Tag = "button";
+            this.ringControl.Text = "КОЛЬЦО";
+            this.ringControl.UseVisualStyleBackColor = false;
+            this.ringControl.MouseClick += new System.Windows.Forms.MouseEventHandler(this.mouseClick);
             // 
             // button1
             // 
@@ -286,43 +325,24 @@ namespace Paint._2._0
             this.textBox1.Visible = false;
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
-            // ringControl
+            // rombControl
             // 
-            this.ringControl.BackColor = System.Drawing.Color.Transparent;
-            this.ringControl.BackgroundImage = global::Paint._2._0.Properties.Resources.rectangle_icon_172928;
-            this.ringControl.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ringControl.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ringControl.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            this.ringControl.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            this.ringControl.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            this.ringControl.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ringControl.Location = new System.Drawing.Point(28, 111);
-            this.ringControl.Name = "ringControl";
-            this.ringControl.Size = new System.Drawing.Size(88, 58);
-            this.ringControl.TabIndex = 6;
-            this.ringControl.Tag = "button";
-            this.ringControl.Text = "КОЛЬЦО";
-            this.ringControl.UseVisualStyleBackColor = false;
-            this.ringControl.MouseClick += new System.Windows.Forms.MouseEventHandler(this.mouseClick);
-            // 
-            // houseControl
-            // 
-            this.houseControl.BackColor = System.Drawing.Color.Transparent;
-            this.houseControl.BackgroundImage = global::Paint._2._0.Properties.Resources.rectangle_icon_172928;
-            this.houseControl.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.houseControl.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.houseControl.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            this.houseControl.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            this.houseControl.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            this.houseControl.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.houseControl.Location = new System.Drawing.Point(122, 111);
-            this.houseControl.Name = "houseControl";
-            this.houseControl.Size = new System.Drawing.Size(88, 58);
-            this.houseControl.TabIndex = 7;
-            this.houseControl.Tag = "button";
-            this.houseControl.Text = "ДОМ";
-            this.houseControl.UseVisualStyleBackColor = false;
-            this.houseControl.MouseClick += new System.Windows.Forms.MouseEventHandler(this.mouseClick);
+            this.rombControl.BackColor = System.Drawing.Color.Transparent;
+            this.rombControl.BackgroundImage = global::Paint._2._0.Properties.Resources.rectangle_icon_172928;
+            this.rombControl.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.rombControl.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.rombControl.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.rombControl.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.rombControl.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.rombControl.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rombControl.Location = new System.Drawing.Point(747, 458);
+            this.rombControl.Name = "rombControl";
+            this.rombControl.Size = new System.Drawing.Size(67, 45);
+            this.rombControl.TabIndex = 8;
+            this.rombControl.Tag = "button";
+            this.rombControl.Text = "РОМБ";
+            this.rombControl.UseVisualStyleBackColor = false;
+            this.rombControl.MouseClick += new System.Windows.Forms.MouseEventHandler(this.mouseClick);
             // 
             // MainWindow
             // 
@@ -330,6 +350,7 @@ namespace Paint._2._0
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(985, 572);
+            this.Controls.Add(this.rombControl);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.moveBtn);
             this.Controls.Add(this.trashBtn);
@@ -373,6 +394,7 @@ namespace Paint._2._0
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button houseControl;
         private System.Windows.Forms.Button ringControl;
+        private System.Windows.Forms.Button rombControl;
     }
 }
 

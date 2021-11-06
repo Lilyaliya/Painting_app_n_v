@@ -20,6 +20,7 @@ namespace Paint._2._0
         private Circle[]                circles;    // массив кругов
         private Ring[]                  rings;     //массив колец
         private House[]                 houses;   //массив домов
+        private Romb[]                  rombes;   //массив ромбов
         Object                          obj;     // Настоящий выделенный объект перемещения
         int                             dX;     // дельта перемещения по X
         int                             dY;    // дельта перемещения по Y
@@ -133,6 +134,24 @@ namespace Paint._2._0
             }
         }
 
+        private Romb[] AddRomb(Romb[] rombes, Romb obj)
+        {
+            if(rombes == null)
+            {
+                rombes = new Romb[1];
+                rombes[0] = obj;
+                return(rombes);
+            }
+            else
+            {
+                Romb[] rombes2 = new Romb[rombes.Length + 1];
+                for (int i = 0; i < rombes.Length; i++)
+                    rombes2[i] = rombes[i];
+                rombes2[rombes.Length] = obj;
+                return (rombes2);
+            }
+        }
+
         private Square[] RemoveSquare(Square[] squares, int index)
         {
             Square[] squares2 = new Square[squares.Length - 1];
@@ -183,6 +202,16 @@ namespace Paint._2._0
             for (int i = index; i < houses.Length - 1; i++)
                 houses2[i] = houses[i + 1];
             return (houses2);
+        }
+
+        private Romb[] RemoveRomb(Romb[] rombes, int index)
+        {
+            Romb[] rombes2 = new Romb[rombes.Length - 1];
+            for (int i = 0; i < index; i++)
+                rombes2[i] = rombes[i];
+            for (int i = index; i < rombes.Length - 1; i++)
+                rombes2[i] = rombes[i + 1];
+            return (rombes2);
         }
 
         private void SetSize()
@@ -241,6 +270,9 @@ namespace Paint._2._0
                 case "house":
                     message.Text = "ДОМ";
                     break;
+                case "romb":
+                    message.Text = "РОМБ";
+                    break;
                 case "none":
                     message.Text = "none";
                     break;
@@ -281,6 +313,10 @@ namespace Paint._2._0
                     name = "ДОМ";
                     name += " №" + houses.Length;
                     break;
+                case "romb":
+                    name = "РОМБ";
+                    name += " №" + rombes.Length;
+                    break;
             }
             return (name);
         }
@@ -297,6 +333,8 @@ namespace Paint._2._0
                 return ("ring");
             else if (houseControl.Tag.ToString() == "reserved")
                 return ("house");
+            else if (rombControl.Tag.ToString() == "reserved")
+                return ("romb");
             else
                 return ("none");
         }
@@ -350,7 +388,13 @@ namespace Paint._2._0
                             return (false);
                     }
                     break;
-
+                case "romb":
+                    foreach (char c in boxWidth.Text)
+                    {
+                        if (!Char.IsDigit(c))
+                            return (false);
+                    }
+                    break;
             }
             return (true);
         }
@@ -403,6 +447,10 @@ namespace Paint._2._0
                     boxWidth.Visible = true;
                     boxHeigth.Enabled = true;
                     boxHeigth.Visible = true;
+                    break;
+                case "romb":
+                    boxWidth.Enabled = true;
+                    boxWidth.Visible = true;
                     break;
             }
         }
@@ -498,6 +546,9 @@ namespace Paint._2._0
             if (houses != null)
                 foreach (var obj in houses)
                     obj.Show(graphics);
+            if (rombes != null)
+                foreach (var obj in rombes)
+                    obj.Show(graphics);
         }
 
         private void trashBtn_Click(object sender, EventArgs e)
@@ -528,6 +579,10 @@ namespace Paint._2._0
                 {
                     houses = RemoveHouse(houses, index);
                 }
+                else if (el.ToString().Contains("РОМБ"))
+                {
+                    rombes = RemoveRomb(rombes, index); 
+                }    
                 deleted[i] = itemList.Items.IndexOf(el);
                 renameFigures(el.ToString(), index);
             }
@@ -590,6 +645,12 @@ namespace Paint._2._0
                     houses = AddHouse(houses, house);
                     houses[houses.Length - 1].Show(graphics);
                     itemList.Items.Add(LastElement("house"));
+                    break;
+                case "romb":
+                    Romb romb = new Romb();
+                    rombes = AddRomb(rombes, romb);
+                    rombes[rombes.Length - 1].Show(graphics);
+                    itemList.Items.Add(LastElement("romb"));
                     break;
                 case "none":
                     message.Text = "ВЫБЕРИТЕ ТИП ФИГУРЫ";
@@ -674,6 +735,20 @@ namespace Paint._2._0
                         timerMessage.Enabled = true;
                     }
                     break;
+                case "romb":
+                    if (onlyDigit("romb"))
+                    {
+                        rombes = AddRomb(rombes, new FiguresLib.Romb(new FiguresLib.Point(e.X, e.Y),
+                            Convert.ToInt32(boxWidth.Text)));
+                        rombes[rombes.Length - 1].Show(graphics);
+                        itemList.Items.Add(LastElement("romb"));
+                    }
+                    else
+                    {
+                        message.Text = "ВВЕДИТЕ КОРРЕКТНЫЕ ДАННЫЕ";
+                        timerMessage.Enabled = true;
+                    }
+                    break;
                 case "none":
                     break;
             }
@@ -733,7 +808,13 @@ namespace Paint._2._0
                         houses[index - 1].Show(graphics, Color.Red);
                         obj = houses[index - 1];
                         objType = "house";
-                    }    
+                    }
+                    else if (el.ToString().Contains("РОМБ"))
+                    {
+                        rombes[index - 1].Show(graphics, Color.Red);
+                        obj = rombes[index - 1];
+                        objType = "romb";
+                    }
                 }
             }
             else if (moveBtn.Tag.ToString() == "pressed")
@@ -801,7 +882,7 @@ namespace Paint._2._0
                 Ring ring = (Ring)obj;
                 FiguresLib.Point coords = ring.getCoords();
                 int R2 = ring.getRadius2();
-                if (e.X > coords.getX() - R2 && e.Y > coords.getY() - R2 
+                if (e.X > coords.getX() - R2 && e.Y > coords.getY() - R2
                             && e.X < coords.getX() + R2 && e.Y < coords.getY() + R2)
                 {
                     inBounds = true;
@@ -818,13 +899,31 @@ namespace Paint._2._0
                 int y = house.getSize()[1];
                 if ((e.X < centre.getX() + x) && (e.X > centre.getX())
                                               && (e.Y < centre.getY() + y) && (e.Y > centre.getY())
-                                              || checkTriangle(centre, highPoint, 
-                                                    new FiguresLib.Point(centre.getX() + x, centre.getY()), 
+                                              || checkTriangle(centre, highPoint,
+                                                    new FiguresLib.Point(centre.getX() + x, centre.getY()),
                                                     new FiguresLib.Point(e.X, e.Y)))
                 {
                     inBounds = true;
                     dX = e.X - centre.getX();
                     dY = e.Y - centre.getY();
+                }
+            }
+            else if (objType == "romb")
+            {
+                Romb romb = (Romb)obj;
+                FiguresLib.Point maxP = romb.getMax();
+                FiguresLib.Point lowP = romb.getLow();
+                int x = romb.getSize();
+                if (checkTriangle(maxP, lowP, 
+                    new FiguresLib.Point(maxP.getX() + x/2, maxP.getY() + x/2), 
+                    new FiguresLib.Point(e.X, e.Y)) || 
+                    checkTriangle(maxP, lowP, 
+                    new FiguresLib.Point(maxP.getX() - x/2, maxP.getY() + x/2),
+                    new FiguresLib.Point(e.X, e.Y)))
+                {
+                    inBounds = true;
+                    dX = e.X - maxP.getX();
+                    dY = e.Y - maxP.getY();
                 }
             }
         }
@@ -881,6 +980,12 @@ namespace Paint._2._0
                         House currentH = houses.First<House>(x => x == house);
                         currentH.MoveTo(new FiguresLib.Point(-currentH.getCoords().getX() + e.X - dX,
                             -currentH.getCoords().getY() + e.Y - dY));
+                        break;
+                    case "romb":
+                        Romb romb = (Romb)obj;
+                        Romb currentRo = rombes.First<Romb>(x => x == romb);
+                        currentRo.MoveTo(new FiguresLib.Point(-currentRo.getMax().getX() + e.X - dX,
+                            -currentRo.getMax().getY() + e.Y - dY));
                         break;
                 }
                 reDraw();
