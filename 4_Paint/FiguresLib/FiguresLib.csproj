@@ -52,6 +52,7 @@
     <Compile Include="Romb.cs" />
     <Compile Include="Square.cs" />
     <Compile Include="TFigure.cs" />
+    <Compile Include="Trapeze.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

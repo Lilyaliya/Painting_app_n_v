@@ -306,6 +306,9 @@ namespace Paint._2._0
                 case "ellipse":
                     message.Text = "ЭЛЛИПС";
                     break;
+                case "trap":
+                    message.Text = "ТРАПЕЦИЯ";
+                    break;
                 case "none":
                     message.Text = "none";
                     break;

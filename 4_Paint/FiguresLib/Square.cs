@@ -8,8 +8,8 @@ using System.Drawing;
 namespace FiguresLib { 
     public class Square: TFigure
     {
-        private int         x; // длина стороны квадрата
-        private Point       coords;
+        protected int         x; // длина стороны квадрата
+        protected Point       coords;
         public Square()
         {
             Random rnd = new Random();

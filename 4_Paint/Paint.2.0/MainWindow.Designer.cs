@@ -406,6 +406,7 @@ namespace Paint._2._0
             this.trapControl.Tag = "button";
             this.trapControl.Text = "ТРАПЕЦИЯ";
             this.trapControl.UseVisualStyleBackColor = false;
+            this.trapControl.MouseClick += new System.Windows.Forms.MouseEventHandler(this.mouseClick);
             // 
             // MainWindow
             // 
