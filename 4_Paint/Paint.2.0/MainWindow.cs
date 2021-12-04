@@ -18,10 +18,9 @@ namespace Paint._2._0
         private Square[]                squares;        // массив квадратов
         private FiguresLib.Rectangle[]  rectangles;    // массив прямоугольников
         private Circle[]                circles;      // массив кругов
-        private Ring[]                  rings;       //массив колец
-        private House[]                 houses;     //массив домов
         private Romb[]                  rombes;    //массив ромбов
         private Ellipse[]               ellipses; //массив эллипсов
+        private Trapeze[]               trapezes; // массив трапеций
         Object                          obj;     // Настоящий выделенный объект перемещения
         int                             dX;     // дельта перемещения по X
         int                             dY;    // дельта перемещения по Y
@@ -100,42 +99,6 @@ namespace Paint._2._0
             }
         }
 
-        private Ring[] AddRing(Ring[] rings, Ring obj)
-        {
-            if (rings == null)
-            {
-                rings = new Ring[1];
-                rings[0] = obj;
-                return (rings);
-            }
-            else
-            {
-                Ring[] rings2 = new Ring[rings.Length + 1];
-                for (int i = 0; i < rings.Length; i++)
-                    rings2[i] = rings[i];
-                rings2[rings.Length] = obj;
-                return (rings2);
-            }
-        }
-
-        private House[] AddHouse(House[] houses, House obj)
-        {
-            if (houses == null)
-            {
-                houses = new House[1];
-                houses[0] = obj;
-                return (houses);
-            }
-            else
-            {
-                House[] houses2 = new House[houses.Length + 1];
-                for (int i = 0; i < houses.Length; i++)
-                    houses2[i] = houses[i];
-                houses2[houses.Length] = obj;
-                return (houses2);
-            }
-        }
-
         private Romb[] AddRomb(Romb[] rombes, Romb obj)
         {
             if(rombes == null)
@@ -172,6 +135,24 @@ namespace Paint._2._0
             }
         }
 
+        private Trapeze[] AddTrap(Trapeze[] trapezes, Trapeze obj)
+        {
+            if (trapezes == null)
+            {
+                trapezes = new Trapeze[1];
+                trapezes[0] = obj;
+                return (trapezes);
+            }
+            else
+            {
+                Trapeze[] trapezes2 = new Trapeze[trapezes.Length + 1];
+                for (int i = 0; i < trapezes.Length; i++)
+                    trapezes2[i] = trapezes[i];
+                trapezes2[trapezes.Length] = obj;
+                return (trapezes2);
+            }
+        }
+
         private Square[] RemoveSquare(Square[] squares, int index)
         {
             Square[] squares2 = new Square[squares.Length - 1];
@@ -204,25 +185,7 @@ namespace Paint._2._0
             return (circles2);
         }
 
-        private Ring[] RemoveRing(Ring[] rings, int index)
-        {
-            Ring[] rings2 = new Ring[rings.Length - 1];
-            for (int i = 0; i < index; i++)
-                rings2[i] = rings[i];
-            for (int i = index; i < rings.Length - 1; i++)
-                rings2[i] = rings[i + 1];
-            return (rings2);
-        }
-
-        private House[] RemoveHouse(House[] houses, int index)
-        {
-            House[] houses2 = new House[houses.Length - 1];
-            for (int i = 0; i < index; i++)
-                houses2[i] = houses[i];
-            for (int i = index; i < houses.Length - 1; i++)
-                houses2[i] = houses[i + 1];
-            return (houses2);
-        }
+        
 
         private Romb[] RemoveRomb(Romb[] rombes, int index)
         {
@@ -242,6 +205,16 @@ namespace Paint._2._0
             for (int i = index; i < ellipses.Length - 1; i++)
                 ellipses2[i] = ellipses[i + 1];
             return (ellipses2);
+        }
+
+        private Trapeze[] RemoveTrap(Trapeze[] trapezes, int index)
+        {
+            Trapeze[] trapezes2 = new Trapeze[trapezes.Length - 1];
+            for (int i = 0; i < index; i++)
+                trapezes2[i] = trapezes[i];
+            for (int i = index; i < trapezes.Length - 1; i++)
+                trapezes2[i] = trapezes[i + 1];
+            return (trapezes2);
         }
 
         private void SetSize()
@@ -341,14 +314,6 @@ namespace Paint._2._0
                     name = "ПРЯМОУГОЛЬНИК";
                     name += " №" + rectangles.Length;
                     break;
-                case "ring":
-                    name = "КОЛЬЦО";
-                    name += " №" + rings.Length;
-                    break;
-                case "house":
-                    name = "ДОМ";
-                    name += " №" + houses.Length;
-                    break;
                 case "romb":
                     name = "РОМБ";
                     name += " №" + rombes.Length;
@@ -356,6 +321,10 @@ namespace Paint._2._0
                 case "ellipse":
                     name = "ЭЛЛИПС";
                     name += " №" + ellipses.Length;
+                    break;
+                case "trap":
+                    name = "ТРАПЕЦИЯ";
+                    name += " №" + trapezes.Length;
                     break;
             }
             return (name);
@@ -369,14 +338,12 @@ namespace Paint._2._0
                 return ("rectangle");
             else if (circleControl.Tag.ToString() == "reserved")
                 return ("circle");
-            else if (ringControl.Tag.ToString() == "reserved")
-                return ("ring");
-            else if (houseControl.Tag.ToString() == "reserved")
-                return ("house");
             else if (rombControl.Tag.ToString() == "reserved")
                 return ("romb");
             else if (ellipseControl.Tag.ToString() == "reserved")
                 return ("ellipse");
+            else if (trapControl.Tag.ToString() == "reserved")
+                return ("trap");
             else
                 return ("none");
         }
@@ -449,6 +416,18 @@ namespace Paint._2._0
                             return (false);
                     }
                     break;
+                case "trap":
+                    foreach (char c in boxWidth.Text)
+                    {
+                        if (!Char.IsDigit(c))
+                            return (false);
+                    }
+                    foreach (char c in boxHeigth.Text)
+                    {
+                        if (!Char.IsDigit(c))
+                            return (false);
+                    }
+                    break;
             }
             return (true);
         }
@@ -492,21 +471,17 @@ namespace Paint._2._0
                     boxHeigth.Enabled = true;
                     boxHeigth.Visible = true;
                     break;
-                case "ring":
-                    textBox1.Visible = true;
-                    textBox1.Enabled = true;
-                    break;
-                case "house":
-                    boxWidth.Enabled = true;
-                    boxWidth.Visible = true;
-                    boxHeigth.Enabled = true;
-                    boxHeigth.Visible = true;
-                    break;
                 case "romb":
                     boxWidth.Enabled = true;
                     boxWidth.Visible = true;
                     break;
                 case "ellipse":
+                    boxWidth.Enabled = true;
+                    boxWidth.Visible = true;
+                    boxHeigth.Enabled = true;
+                    boxHeigth.Visible = true;
+                    break;
+                case "trap":
                     boxWidth.Enabled = true;
                     boxWidth.Visible = true;
                     boxHeigth.Enabled = true;
@@ -526,8 +501,17 @@ namespace Paint._2._0
                     CheckSelected();
                     return;
                 }
+                if (el.ToString().Contains("ЭЛЛИПС"))
+                {
+                    rotateBtn.Enabled = true;
+                    rotateBtn.Visible = true;
+                    CheckSelected();
+                    return;
+                }    
                 additional.Visible = false;
                 additional.Enabled = false;
+                rotateBtn.Enabled = false;
+                rotateBtn.Visible = false;
             }
             CheckSelected();
         }
@@ -554,8 +538,6 @@ namespace Paint._2._0
             trashBtn.Visible = a;
             moveBtn.Enabled = a;
             moveBtn.Visible = a;
-            rotateBtn.Enabled = a;
-            rotateBtn.Visible = a;
         }
 
         private void additional_Click(object sender, EventArgs e)
@@ -602,17 +584,14 @@ namespace Paint._2._0
             if (circles != null)
                 foreach (var obj in circles)
                      obj.Show(graphics);
-            if (rings != null)
-                foreach (var obj in rings)
-                    obj.Show(graphics);
-            if (houses != null)
-                foreach (var obj in houses)
-                    obj.Show(graphics);
             if (rombes != null)
                 foreach (var obj in rombes)
                     obj.Show(graphics);
             if (ellipses != null)
                 foreach (var obj in ellipses)
+                    obj.Show(graphics);
+            if (trapezes != null)
+                foreach (var obj in trapezes)
                     obj.Show(graphics);
         }
 
@@ -627,36 +606,26 @@ namespace Paint._2._0
                 if (el.ToString().Contains("КВАДРАТ"))
                 {
                     squares = RemoveSquare(squares, index);
-                    //squares = (Square[])adapter.RemoveFigure(squares, index);
                 }
                 else if (el.ToString().Contains("КРУГ"))
                 {
                     circles = RemoveCircle(circles, index);
-                    //circles = (Circle[])adapter.RemoveFigure(circles, index);
                 }
                 else if (el.ToString().Contains("ПРЯМОУГОЛЬНИК"))
                 {
                     rectangles = RemoveRectangle(rectangles, index);
-                    //rectangles = (FiguresLib.Rectangle[])adapter.RemoveFigure(rectangles, index);
-                }
-                else if (el.ToString().Contains("КОЛЬЦО"))
-                {
-                    rings = RemoveRing(rings, index);
-                    //rings = (Ring[])adapter.RemoveFigure(rings, index);
-                }
-                else if (el.ToString().Contains("ДОМ"))
-                {
-                    houses = RemoveHouse(houses, index);
-                    //houses = (House[])adapter.RemoveFigure(houses, index);
                 }
                 else if (el.ToString().Contains("РОМБ"))
                 {
                     rombes = RemoveRomb(rombes, index);
-                    //rombes = (Romb[])adapter.RemoveFigure(rombes, index);
                 }
                 else if (el.ToString().Contains("ЭЛЛИПС"))
                 {
                     ellipses = RemoveEllipse(ellipses, index);
+                }
+                else if (el.ToString().Contains("ТРАПЕЦИЯ"))
+                {
+                    trapezes = RemoveTrap(trapezes, index);
                 }    
                 deleted[i] = itemList.Items.IndexOf(el);
                 renameFigures(el.ToString(), index);
@@ -693,52 +662,39 @@ namespace Paint._2._0
             {
                 case "square":
                     Square square = new Square();
-                    //squares = (Square[])adapter.AddFigure(squares, square);
                     squares = AddSquare(squares, square);
                     squares[squares.Length - 1].Show(graphics);
                     itemList.Items.Add(LastElement("square"));
                     break;
                 case "circle":
                     Circle circle = new Circle();
-                    //circles = (Circle[])adapter.AddFigure(circles, circle);
                     circles = AddCircle(circles, circle);
                     circles[circles.Length - 1].Show(graphics);
                     itemList.Items.Add(LastElement("circle"));
                     break;
                 case "rectangle":
                     FiguresLib.Rectangle rectangle = new FiguresLib.Rectangle();
-                    //rectangles = (FiguresLib.Rectangle[])adapter.AddFigure(rectangles, rectangle);
                     rectangles = AddRect(rectangles, rectangle);
                     rectangles[rectangles.Length - 1].Show(graphics);
                     itemList.Items.Add(LastElement("rectangle"));
                     break;
-                case "ring":
-                    Ring ring = new Ring();
-                    //rings = (Ring[])adapter.AddFigure(rings, ring);
-                    rings = AddRing(rings, ring);
-                    rings[rings.Length - 1].Show(graphics);
-                    itemList.Items.Add(LastElement("ring"));
-                    break;
-                case "house":
-                    House house = new House();
-                    //houses = (House[])adapter.AddFigure(houses, house);
-                    houses = AddHouse(houses, house);
-                    houses[houses.Length - 1].Show(graphics);
-                    itemList.Items.Add(LastElement("house"));
-                    break;
                 case "romb":
                     Romb romb = new Romb();
-                    //rombes = (Romb[])adapter.AddFigure(rombes, romb);
                     rombes = AddRomb(rombes, romb);
                     rombes[rombes.Length - 1].Show(graphics);
                     itemList.Items.Add(LastElement("romb"));
                     break;
                 case "ellipse":
                     Ellipse ellipse = new Ellipse();
-                    //ellipses = (Ellipse[])adapter.AddFigure(ellipses, ellipse);
                     ellipses = AddEllipse(ellipses, ellipse);
                     ellipses[ellipses.Length - 1].Show(graphics);
                     itemList.Items.Add(LastElement("ellipse"));
+                    break;
+                case "trap":
+                    Trapeze trapeze = new Trapeze();
+                    trapezes = AddTrap(trapezes, trapeze);
+                    trapezes[trapezes.Length - 1].Show(graphics);
+                    itemList.Items.Add(LastElement("trap"));
                     break;
                 case "none":
                     message.Text = "ВЫБЕРИТЕ ТИП ФИГУРЫ";
@@ -756,8 +712,6 @@ namespace Paint._2._0
                 case "square":
                     if (onlyDigit("square"))
                     {
-                        //squares = (Square[])adapter.AddFigure(squares, new Square(new FiguresLib.Point(e.X, e.Y),
-                        //                   Convert.ToInt32(boxWidth.Text)));
                         squares = AddSquare(squares, new Square(new FiguresLib.Point(e.X, e.Y), 
                                        Convert.ToInt32(boxWidth.Text)));
                         squares[squares.Length - 1].Show(graphics);
@@ -772,8 +726,6 @@ namespace Paint._2._0
                 case "circle":
                     if (onlyDigit("circle"))
                     {
-                        //circles = (Circle[])adapter.AddFigure(circles, new Circle(new FiguresLib.Point(e.X, e.Y),
-                        //                Convert.ToInt32(textBox1.Text)));
                         circles = AddCircle(circles, new Circle(new FiguresLib.Point(e.X, e.Y), 
                                         Convert.ToInt32(textBox1.Text)));
                         circles[circles.Length - 1].Show(graphics);
@@ -788,8 +740,6 @@ namespace Paint._2._0
                 case "rectangle":
                     if (onlyDigit("rectangle"))
                     {
-                        //rectangles = (FiguresLib.Rectangle[])adapter.AddFigure(rectangles, new FiguresLib.Rectangle(new FiguresLib.Point(e.X, e.Y),
-                        //    Convert.ToInt32(boxWidth.Text), Convert.ToInt32(boxHeigth.Text)));
                         rectangles = AddRect(rectangles, new FiguresLib.Rectangle(new FiguresLib.Point(e.X, e.Y), 
                             Convert.ToInt32(boxWidth.Text), Convert.ToInt32(boxHeigth.Text)));
                         rectangles[rectangles.Length - 1].Show(graphics);
@@ -801,43 +751,9 @@ namespace Paint._2._0
                         timerMessage.Enabled = true;
                     }
                     break;
-                case "ring":
-                    if (onlyDigit("ring"))
-                    {
-                        //rings = (Ring[])adapter.AddFigure(rings, new Ring(new FiguresLib.Point(e.X, e.Y),
-                        //                Convert.ToInt32(textBox1.Text)));
-                        rings = AddRing(rings, new Ring(new FiguresLib.Point(e.X, e.Y),
-                                        Convert.ToInt32(textBox1.Text)));
-                        rings[rings.Length - 1].Show(graphics);
-                        itemList.Items.Add(LastElement("ring"));
-                    }
-                    else
-                    {
-                        message.Text = "ВВЕДИТЕ КОРРЕКТНЫЕ ДАННЫЕ";
-                        timerMessage.Enabled = true;
-                    }
-                    break;
-                case "house":
-                    if (onlyDigit("house"))
-                    {
-                        //houses = (House[])adapter.AddFigure(houses, new FiguresLib.House(new FiguresLib.Point(e.X, e.Y),
-                        //    Convert.ToInt32(boxWidth.Text), Convert.ToInt32(boxHeigth.Text)));
-                        houses = AddHouse(houses, new FiguresLib.House(new FiguresLib.Point(e.X, e.Y),
-                            Convert.ToInt32(boxWidth.Text), Convert.ToInt32(boxHeigth.Text)));
-                        houses[houses.Length - 1].Show(graphics);
-                        itemList.Items.Add(LastElement("house"));
-                    }
-                    else
-                    {
-                        message.Text = "ВВЕДИТЕ КОРРЕКТНЫЕ ДАННЫЕ";
-                        timerMessage.Enabled = true;
-                    }
-                    break;
                 case "romb":
                     if (onlyDigit("romb"))
                     {
-                        //rombes = (Romb[])adapter.AddFigure(rombes, new Romb(new FiguresLib.Point(e.X, e.Y),
-                        //    Convert.ToInt32(boxWidth.Text)));
                         rombes = AddRomb(rombes, new Romb(new FiguresLib.Point(e.X, e.Y),
                             Convert.ToInt32(boxWidth.Text)));
                         rombes[rombes.Length - 1].Show(graphics);
@@ -852,14 +768,26 @@ namespace Paint._2._0
                 case "ellipse":
                     if (onlyDigit("ellipse"))
                     {
-                        //ellipses = (Ellipse[])adapter.AddFigure(ellipses, new FiguresLib.Ellipse(new FiguresLib.Point(e.X, e.Y),
-                        //    Convert.ToInt32(boxWidth.Text), Convert.ToInt32(boxHeigth.Text)));
                         ellipses = AddEllipse(ellipses, new Ellipse(new FiguresLib.Point(e.X, e.Y),
                             Convert.ToInt32(boxWidth.Text), Convert.ToInt32(boxHeigth.Text)));
                         ellipses[ellipses.Length - 1].Show(graphics);
                         itemList.Items.Add(LastElement("ellipse"));
                     }
                     else
+                    {
+                        message.Text = "ВВЕДИТЕ КОРРЕКТНЫЕ ДАННЫЕ";
+                        timerMessage.Enabled = true;
+                    }
+                    break;
+                case "trap":
+                    if (onlyDigit("trap"))
+                    {
+                        trapezes = AddTrap(trapezes, new Trapeze(new FiguresLib.Point(e.X, e.Y),
+                               Convert.ToInt32(boxWidth.Text), Convert.ToInt32(boxHeigth.Text)));
+                        trapezes[trapezes.Length - 1].Show(graphics);
+                        itemList.Items.Add(LastElement("trap"));
+                    }
+                    else 
                     {
                         message.Text = "ВВЕДИТЕ КОРРЕКТНЫЕ ДАННЫЕ";
                         timerMessage.Enabled = true;
@@ -913,18 +841,6 @@ namespace Paint._2._0
                         obj = rectangles[index - 1];
                         objType = "rectangle";
                     }
-                    else if (el.ToString().Contains("КОЛЬЦО"))
-                    {
-                        rings[index - 1].Show(graphics, Color.Red);
-                        obj = rings[index - 1];
-                        objType = "ring";
-                    }
-                    else if (el.ToString().Contains("ДОМ"))
-                    {
-                        houses[index - 1].Show(graphics, Color.Red);
-                        obj = houses[index - 1];
-                        objType = "house";
-                    }
                     else if (el.ToString().Contains("РОМБ"))
                     {
                         rombes[index - 1].Show(graphics, Color.Red);
@@ -936,6 +852,12 @@ namespace Paint._2._0
                         ellipses[index - 1].Show(graphics, Color.Red);
                         obj = ellipses[index - 1];
                         objType = "ellipse";
+                    }
+                    else if (el.ToString().Contains("ТРАПЕЦИЯ"))
+                    {
+                        trapezes[index - 1].Show(graphics, Color.Red);
+                        obj = trapezes[index - 1];
+                        objType = "trap";
                     }    
                 }
             }
@@ -999,37 +921,6 @@ namespace Paint._2._0
                     dY = e.Y - y0;
                 }
             }
-            else if (objType == "ring")
-            {
-                Ring ring = (Ring)obj;
-                FiguresLib.Point coords = ring.getCoords();
-                int R2 = ring.getRadius2();
-                if (e.X > coords.getX() - R2 && e.Y > coords.getY() - R2
-                            && e.X < coords.getX() + R2 && e.Y < coords.getY() + R2)
-                {
-                    inBounds = true;
-                    dX = e.X - coords.getX();
-                    dY = e.Y - coords.getY();
-                }
-            }
-            else if (objType == "house")
-            {
-                House house = (House)obj;
-                FiguresLib.Point centre = house.getCoords();
-                FiguresLib.Point highPoint = house.getHigh();
-                int x = house.getSize()[0];
-                int y = house.getSize()[1];
-                if ((e.X < centre.getX() + x) && (e.X > centre.getX())
-                                              && (e.Y < centre.getY() + y) && (e.Y > centre.getY())
-                                              || checkTriangle(centre, highPoint,
-                                                    new FiguresLib.Point(centre.getX() + x, centre.getY()),
-                                                    new FiguresLib.Point(e.X, e.Y)))
-                {
-                    inBounds = true;
-                    dX = e.X - centre.getX();
-                    dY = e.Y - centre.getY();
-                }
-            }
             else if (objType == "romb")
             {
                 Romb romb = (Romb)obj;
@@ -1059,6 +950,28 @@ namespace Paint._2._0
                 {
                     inBounds = true;
                     dX = e.X - x0;
+                    dY = e.Y - y0;
+                }
+            }
+            else if (objType == "trap")
+            {
+                Trapeze trap = (Trapeze)obj;
+                int x0, y0, x1, y1;
+                x0 = trap.getCoords().getX() + trap.geta();
+                y0 = trap.getCoords().getY();
+                x1 = x0 + trap.getMin();
+                y1 = y0 + trap.getH();
+                int x = trap.getMin();
+                int y = trap.getH();
+                if ((e.X < x0 + x) && (e.X > x0) && (e.Y < y0 + y) && (e.Y > y0) || 
+                        checkTriangle(new FiguresLib.Point(x0, y0 + trap.getH()), new FiguresLib.Point(trap.getCoords().getX(), trap.getCoords().getY()), 
+                         new FiguresLib.Point(x0, y1), new FiguresLib.Point(e.X, e.Y)) ||
+                        checkTriangle(new FiguresLib.Point(trap.getCoords().getX() + trap.getMin() + trap.geta(), trap.getCoords().getY()),
+                        new FiguresLib.Point(trap.getCoords().getX() + trap.getMin() + 2 * trap.geta(), y0 + trap.getH()), 
+                        new FiguresLib.Point(trap.getCoords().getX() + trap.getMin() + trap.geta(), y1), new FiguresLib.Point(e.X, e.Y)))
+                {
+                    inBounds = true;
+                    dX = e.X - x0 + trap.geta();
                     dY = e.Y - y0;
                 }
             }
@@ -1105,18 +1018,6 @@ namespace Paint._2._0
                         currentR.MoveTo(new FiguresLib.Point(-currentR.getCoords().getX() + e.X - dX,
                             -currentR.getCoords().getY() + e.Y - dY));
                         break;
-                    case "ring":
-                        Ring ring = (Ring)obj;
-                        Ring currentRing = rings.First<Ring>(x => x == ring);
-                        currentRing.MoveTo(new FiguresLib.Point(-currentRing.getCoords().getX() + e.X - dX,
-                            -currentRing.getCoords().getY() + e.Y - dY));
-                        break;
-                    case "house":
-                        House house = (House)obj;
-                        House currentH = houses.First<House>(x => x == house);
-                        currentH.MoveTo(new FiguresLib.Point(-currentH.getCoords().getX() + e.X - dX,
-                            -currentH.getCoords().getY() + e.Y - dY));
-                        break;
                     case "romb":
                         Romb romb = (Romb)obj;
                         Romb currentRo = rombes.First<Romb>(x => x == romb);
@@ -1128,6 +1029,12 @@ namespace Paint._2._0
                         Ellipse currentEl = ellipses.First<Ellipse>(x => x == ellipse);
                         currentEl.MoveTo(new FiguresLib.Point(-currentEl.X + e.X - dX,
                             -currentEl.Y + e.Y - dY));
+                        break;
+                    case "trap":
+                        Trapeze trapeze = (Trapeze)obj;
+                        Trapeze currentT = trapezes.First<Trapeze>(x => x == trapeze);
+                        currentT.MoveTo(new FiguresLib.Point(-currentT.X + e.X - dX,
+                            -currentT.Y + e.Y - dY));
                         break;
                 }
                 reDraw();

@@ -60,6 +60,8 @@ namespace FiguresLib
 
         public void Rotate()
         {
+            X = X + r / 2 - lY / 2;
+            Y = Y - r / 2 + lY / 2;
             int a = this.r;
             this.r = this.lY;
             this.lY = a;

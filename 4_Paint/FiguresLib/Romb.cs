@@ -7,13 +7,10 @@ using System.Drawing;
 
 namespace FiguresLib
 {
-    public class Romb
+    public class Romb: Square
     {
         private Point maxP;
         private Point lowP;
-        private int x; // размер диагонали
-        private const int width = 740;
-        private const int heigth = 572;
         public Romb()
         {
             Random rnd = new Random();
@@ -30,12 +27,11 @@ namespace FiguresLib
             this.lowP = new Point(this.maxP.getX(), this.maxP.getY() + x);
         }
 
-        public void Show(Graphics gc)
+        public override void Show(Graphics gc)
         {
             Pen pen = new Pen(Color.Green, 3);
             if (maxP != null && lowP != null)
             {
-                gc.DrawLine(pen, maxP.getX(), maxP.getY(), lowP.getX(), lowP.getY());
                 gc.DrawLine(pen, maxP.getX(), maxP.getY(), maxP.getX() - x/2, maxP.getY() + x / 2);
                 gc.DrawLine(pen, maxP.getX(), maxP.getY(), maxP.getX() + x/2, maxP.getY() + x / 2);
                 gc.DrawLine(pen, lowP.getX(), lowP.getY(), lowP.getX() - x/2, lowP.getY() - x/2);
@@ -43,19 +39,18 @@ namespace FiguresLib
             }
         }
 
-        public void Show(Graphics gc, Color color)
+        public override void Show(Graphics gc, Color color)
         {
             Pen pen = new Pen(color, 3);
             if (maxP != null && lowP != null)
             {
-                gc.DrawLine(pen, maxP.getX(), maxP.getY(), lowP.getX(), lowP.getY());
                 gc.DrawLine(pen, maxP.getX(), maxP.getY(), maxP.getX() - x / 2, maxP.getY() + x / 2);
                 gc.DrawLine(pen, maxP.getX(), maxP.getY(), maxP.getX() + x / 2, maxP.getY() + x / 2);
                 gc.DrawLine(pen, lowP.getX(), lowP.getY(), lowP.getX() - x / 2, lowP.getY() - x / 2);
                 gc.DrawLine(pen, lowP.getX(), lowP.getY(), lowP.getX() + x / 2, lowP.getY() - x / 2);
             }
         }
-        public void MoveTo(Point point)
+        public override void MoveTo(Point point)
         {
             int x = maxP.getX() + point.getX();
             int y = maxP.getY() + point.getY();
@@ -70,7 +65,7 @@ namespace FiguresLib
         public Point getMax() { return (maxP); }
 
         public Point getLow() { return (lowP); }
-        public void Set(int l)
+        public new void Set(int l)
         {
             this.x = l;
         }

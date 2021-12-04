@@ -44,11 +44,9 @@
   <ItemGroup>
     <Compile Include="Circle.cs" />
     <Compile Include="Ellipse.cs" />
-    <Compile Include="House.cs" />
     <Compile Include="Point.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Rectangle.cs" />
-    <Compile Include="Ring.cs" />
     <Compile Include="Romb.cs" />
     <Compile Include="Square.cs" />
     <Compile Include="TFigure.cs" />
